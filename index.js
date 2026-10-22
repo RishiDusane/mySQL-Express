@@ -1,17 +1,20 @@
-
 const express = require('express');
-const db= require('./utils/db-connection');
-const studentRoutes = require('./routes/studentsRoutes');
+const userRoutes = require('./routes/userRoutes');
+const busRoutes = require('./routes/busRoutes');
+
 const app = express();
 
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+  res.send('Bus booking server is running!');
 });
 
-app.use("/students", studentRoutes);
+app.use('/users', userRoutes);
+app.use('/buses', busRoutes);
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
